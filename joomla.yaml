@@ -10,6 +10,8 @@ services:
       MYSQL_PASSWORD: joomla
     volumes:
       - joomla_mysql_data:/var/lib/mysql
+    networks:
+      - joomla_network
 
   joomla_files:
     image: joomla
@@ -25,7 +27,15 @@ services:
       - joomla_files_data:/var/www/html
     depends_on:
       - joomla_mysql
+    networks:
+      - joomla_network
 
 volumes:
   joomla_mysql_data:
   joomla_files_data:
+   
+networks:
+  default:
+      name: joomla_network
+  joomla_network:
+      driver: bridge

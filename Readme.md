@@ -5,3 +5,4 @@ This repository contains the files of the deployment in docker compose of the ap
 
 ## Applications
 - [x] [Joomla](joomla.yaml)
+- [x] [Wordpress](wordpress.yaml)

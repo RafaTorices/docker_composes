@@ -6,7 +6,7 @@ services:
     ports:
       - 3336:3306
     environment:
-      MYSQL_ROOT_PASSWORD: joomla
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: joomla
       MYSQL_USER: joomla
       MYSQL_PASSWORD: joomla

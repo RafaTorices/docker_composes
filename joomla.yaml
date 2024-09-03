@@ -3,6 +3,8 @@ services:
   joomla_mysql:
     image: mysql
     restart: always
+    ports:
+      - 3336:3306
     environment:
       MYSQL_ROOT_PASSWORD: joomla
       MYSQL_DATABASE: joomla

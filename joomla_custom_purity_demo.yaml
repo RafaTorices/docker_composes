@@ -1,0 +1,42 @@
+# Docker compose file for joomla and mysql application
+services:
+  joomla_mysql:
+    image: mysql
+    restart: always
+    ports:
+      - 3336:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: joomla
+      MYSQL_USER: joomla
+      MYSQL_PASSWORD: joomla
+    volumes:
+      - joomla_mysql_data:/var/lib/mysql
+    networks:
+      - joomla_network
+
+  joomla_purity_demo:
+    image: joomla
+    restart: always
+    ports:
+      - 8082:80
+    environment:
+      JOOMLA_DB_HOST: joomla_mysql
+      JOOMLA_DB_USER: joomla
+      JOOMLA_DB_PASSWORD: joomla
+      JOOMLA_DB_NAME: joomla
+    volumes:
+      - ./joomla_custom_files_purity_demo:/var/www/html
+    depends_on:
+      - joomla_mysql
+    networks:
+      - joomla_network
+
+volumes:
+  joomla_mysql_data:
+   
+networks:
+  default:
+      name: joomla_network
+  joomla_network:
+      driver: bridge
